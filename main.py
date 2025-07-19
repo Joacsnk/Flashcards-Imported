@@ -1,6 +1,7 @@
-from os import system as sy
+from os import path, system as sy
 from time import sleep as sl
 import pyperclip as pc
+from random import randint
 class main():
     
     def __init__(self):
@@ -62,7 +63,8 @@ class main():
             print(f"Conjunto criado com sucesso! Aqui está abaixo:\n\n{self.flashcard_import}\n\n")
             print("1 - Copiar conteúdo")
             print("2 - Criar um flashcard novamente")
-            print("3 - Sair")
+            print("3 - Criar arquivo TXT")
+            print("4 - Sair")
             match str(input("Escolha a opção acima: ")):
                 case '1':
                     sy("cls")
@@ -74,6 +76,21 @@ class main():
                     sy('cls')
                     self.inicio(1)
                 case '3':
+                    while True:
+                        i = randint(1, 10000000)
+                        if not path.exists(f"{i}.txt"):
+                            with open(f"{i}.txt", "w", encoding="utf-8") as f:
+                                f.write(self.flashcard_import)
+                            sy('cls')
+                            sl(1)
+                            print("Arquivo TXT criado com sucesso!")
+                            sl(1)
+                            sy('cls')
+                            sl(0.5)
+                            break
+                        else:
+                            continue
+                case '4':
                     sy('cls')
                     exit()
                 case _:
